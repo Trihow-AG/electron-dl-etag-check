@@ -1,4 +1,4 @@
-import {BrowserView, BrowserWindow, DownloadItem} from 'electron';
+import { BrowserView, BrowserWindow, DownloadItem } from "electron";
 
 declare namespace electronDl {
 	interface Progress {
@@ -118,6 +118,13 @@ declare namespace electronDl {
 		@default false
 		*/
 		readonly overwrite?: boolean;
+
+		/**
+		the passed ETAG value is compared to the TAG header value of the file to download. If the two values are equal, the download is skipped. If the value is not passed, or the file to download doesn't have an ETA header, the download is performed.
+
+		@default undefined
+		*/
+		readonly etag?: string | undefined;
 	}
 }
 
