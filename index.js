@@ -69,13 +69,6 @@ function registerListener(session, options, callback = () => {}) {
 			? downloadItemEtagValue.replace(/"/g, "")
 			: null;
 
-		console.log(
-			"[DL]: downloadItemEtagValueStripped",
-			downloadItemEtagValueStripped
-		);
-
-		console.log("[DL]: options.etag", options.etag);
-
 		// if the etag value is the same; early return
 		if (downloadItemEtagValueStripped === options.etag) {
 			// cancel the download
