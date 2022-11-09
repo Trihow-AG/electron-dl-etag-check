@@ -67,7 +67,11 @@ function registerListener(session, options, callback = () => {}) {
 
 		// if the etag value is the same; early return
 		if (downloadItemEtagValue === options.etag) {
-			return downloadItemEtagValue;
+			// cancel the download
+			item.cancel();
+			console.log("[electron-dl]: download skipped due to ETAG value");
+			// return early
+			callback(null, item);
 			// if the etag value is different or non existent; download the file
 		} else {
 			downloadItems.add(item);
@@ -179,7 +183,8 @@ function registerListener(session, options, callback = () => {}) {
 					const message = pupa(errorMessage, {
 						filename: path.basename(filePath),
 					});
-					callback(new Error(message));
+					// callback(new Error(message));
+					callback(null, item);
 				} else if (state === "completed") {
 					const savePath = item.getSavePath();
 
@@ -201,12 +206,9 @@ function registerListener(session, options, callback = () => {}) {
 							url: item.getURL(),
 						});
 					}
-
 					callback(null, item);
 				}
 			});
-
-			return downloadItemEtagValue;
 		}
 	};
 
