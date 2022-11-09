@@ -65,8 +65,19 @@ function registerListener(session, options, callback = () => {}) {
 	const listener = (event, item, webContents) => {
 		const downloadItemEtagValue = item.getETag();
 
+		const downloadItemEtagValueStripped = downloadItemEtagValue
+			? downloadItemEtagValue.replace(/"/g, "")
+			: null;
+
+		console.log(
+			"[DL]: downloadItemEtagValueStripped",
+			downloadItemEtagValueStripped
+		);
+
+		console.log("[DL]: options.etag", options.etag);
+
 		// if the etag value is the same; early return
-		if (downloadItemEtagValue === options.etag) {
+		if (downloadItemEtagValueStripped === options.etag) {
 			// cancel the download
 			item.cancel();
 			console.log("[electron-dl]: download skipped due to ETAG value");
