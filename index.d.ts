@@ -1,4 +1,4 @@
-import {BrowserView, BrowserWindow, DownloadItem, SaveDialogOptions} from 'electron';
+import { BrowserView, BrowserWindow, DownloadItem } from "electron";
 
 declare namespace electronDl {
 	interface Progress {
@@ -120,13 +120,11 @@ declare namespace electronDl {
 		readonly overwrite?: boolean;
 
 		/**
-		Customize the save dialog.
+		the passed ETAG value is compared to the TAG header value of the file to download. If the two values are equal, the download is skipped. If the value is not passed, or the file to download doesn't have an ETA header, the download is performed.
 
-		If `defaultPath` is not explicity defined, a default value is assigned based on the file path.
-
-		@default {}
+		@default undefined
 		*/
-		readonly dialogOptions?: SaveDialogOptions;
+		readonly etag?: string | undefined;
 	}
 }
 

@@ -1,6 +1,6 @@
 {
 	"name": "electron-dl",
-	"version": "3.5.0",
+	"version": "3.4.1",
 	"description": "Simplified file downloads for your Electron app",
 	"license": "MIT",
 	"repository": "sindresorhus/electron-dl",
@@ -32,18 +32,18 @@
 		"unused-filename": "^2.1.0"
 	},
 	"devDependencies": {
-		"@types/node": "^18.11.18",
-		"ava": "^5.1.1",
-		"cp-file": "^10.0.0",
-		"electron": "^22.1.0",
-		"minimist": "^1.2.7",
+		"@types/node": "^13.1.4",
+		"ava": "^2.4.0",
+		"cp-file": "^7.0.0",
+		"electron": "^7.1.7",
+		"minimist": "^1.2.0",
 		"node-static": "^0.7.11",
-		"pify": "^6.1.0",
-		"spectron": "^19.0.0",
-		"tsd": "^0.25.0",
-		"typescript": "^4.9.5",
-		"uuid": "^9.0.0",
-		"xo": "^0.53.1"
+		"pify": "^4.0.1",
+		"spectron": "^9.0.0",
+		"tsd": "^0.17.0",
+		"typescript": "^4.4.3",
+		"uuid": "^8.3.2",
+		"xo": "^0.39.0"
 	},
 	"xo": {
 		"envs": [
