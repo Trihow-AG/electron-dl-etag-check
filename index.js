@@ -1,4 +1,3 @@
-"use strict";
 const path = require("path");
 const { app, BrowserWindow, shell, dialog } = require("electron");
 const unusedFilename = require("unused-filename");
@@ -63,6 +62,16 @@ function registerListener(session, options, callback = () => {}) {
 	};
 
 	const listener = (event, item, webContents) => {
+		// we have an issue that if a file is no longer accesible via the signed download link
+		// the website shows an xml error. in order to avoid getting stuck at this point we need
+		// to specifically handle this case and abort such a download
+		if (item.getMimeType() === "application/xml") {
+			item.cancel();
+			console.log("[electron-dl]: storage url was expired, skipping download");
+			// return early
+			callback(null, item);
+		}
+
 		const downloadItemEtagValue = item.getETag();
 
 		const downloadItemEtagValueStripped = downloadItemEtagValue
